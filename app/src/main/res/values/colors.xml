@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="drawer_bg">#2d132c</color>
+    <color name="drawer_text_color">#c72c41</color>
+    <color name="drawer_icon_color">#de3e54</color>
+    <color name="whitetransparent">#cccccc</color>
+
+
+
+
+
+</resources>
