@@ -4,9 +4,13 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="drawer_bg">#2d132c</color>
-    <color name="drawer_text_color">#c72c41</color>
-    <color name="drawer_icon_color">#de3e54</color>
+    <color name="drawer_text_color">#c7e2b2</color>
+    <color name="drawer_icon_color">#e1ffc2</color>
     <color name="whitetransparent">#cccccc</color>
+    <color name="cardview_txt_color">#89c9b8</color>092532
+
+
+    <color name="firtpage_bg_color">#092532</color>
 
 
 
