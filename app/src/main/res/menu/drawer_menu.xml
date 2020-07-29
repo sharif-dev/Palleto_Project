@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/activity_main" >
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/home"
+            android:title="Home"
+            android:icon="@drawable/ic_home_black_24dp"/>
+
+        <item android:id="@+id/favorit"
+            android:title="Favorit pallets"
+            android:icon="@drawable/ic_favorite"/>
+        <item android:id="@+id/popular"
+            android:title="Popular pallets"
+            android:icon="@drawable/ic_palette"/>
+        <item android:id="@+id/setting"
+            android:title="Setting"
+            android:icon="@drawable/ic_settings"/>
+
+    </group>
+</menu>
