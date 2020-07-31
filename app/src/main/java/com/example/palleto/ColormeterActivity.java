@@ -4,11 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -42,6 +40,9 @@ public class ColormeterActivity extends AppCompatActivity {
 
 
 
+        final String TAG = "MyActivity";
+        Log.i(TAG, "MyClass.getView() — get item number " + getIntent().getType());
+
 
         imageView.setImageBitmap(image_btmap);
         imageView.setDrawingCacheEnabled(true);
@@ -53,7 +54,8 @@ public class ColormeterActivity extends AppCompatActivity {
 
                 if (event.getAction() == event.ACTION_DOWN || event.getAction() == event.ACTION_MOVE)
                 {
-                        int pixel = image_btmap.getPixel((int) event.getX(), (int) event.getY());
+                        Bitmap bitmap_ = imageView.getDrawingCache();
+                        int pixel = bitmap_.getPixel((int) event.getX(), (int) event.getY());
 
                         int a = Color.alpha(pixel);
                         int r = Color.red(pixel);

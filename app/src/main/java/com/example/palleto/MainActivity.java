@@ -12,6 +12,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -21,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 import static android.R.layout.select_dialog_item;
 
@@ -29,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mToggle;
     private ImageView mcolormetet;
     final String[] dialogoptions={"Take form Camera" , "Choose form Gallery"};
+    private static final int PICK_IMAGE = 100;
+    private String option = "";
+    Uri gallery_image;
 
 
     @Override
@@ -45,17 +50,19 @@ public class MainActivity extends AppCompatActivity {
         builder.setAdapter(adapter , new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                    //Conect to the camera
+                    //////////Connect to the camera
                 if( which == 0) {
-
+                    option = "camera";
                     Intent mIntent = new Intent();
                     mIntent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
                     startActivityForResult(mIntent , 0);
                 }
-                // connect to the gallery
+                /////// connect to the gallery
                 if(which == 1)
                 {
-
+                option="gallery";
+                    Intent gallery = new Intent(Intent.ACTION_PICK , MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+                    startActivityForResult(gallery , PICK_IMAGE);
 
                 }
             }
@@ -101,22 +108,44 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Bitmap mbitmap = (Bitmap) data.getExtras().get("data");
-        if (mbitmap != null)
-        {
-            ByteArrayOutputStream bStream = new ByteArrayOutputStream();
-            mbitmap.compress(Bitmap.CompressFormat.PNG, 100, bStream);
-            byte[] byteArray = bStream.toByteArray();
+        if (option == "camera") {
 
 
-            Intent secondintent = new Intent(this , ColormeterActivity.class);
-            secondintent.putExtra("bitmapimg" , byteArray);
+            Bitmap mbitmap = (Bitmap) data.getExtras().get("data");
+            if (mbitmap != null) {
 
-            Log.i("BITMAPPPPPPPPPPPP///" , String.valueOf(byteArray));
+                ByteArrayOutputStream bStream = new ByteArrayOutputStream();
+                mbitmap.compress(Bitmap.CompressFormat.PNG, 100, bStream);
+                byte[] byteArray = bStream.toByteArray();
+                Intent secondintent = new Intent(this, ColormeterActivity.class);
+                secondintent.putExtra("bitmapimg", byteArray);
+                startActivity(secondintent);
 
-            startActivity(secondintent);
+            }
 
         }
+
+        if (option == "gallery")
+        {
+            if (resultCode == RESULT_OK && requestCode == PICK_IMAGE){
+                gallery_image = data.getData();
+                Bitmap photoBmp = null;
+                if (gallery_image != null) {
+                    try {
+                        photoBmp = MediaStore.Images.Media.getBitmap(this.getContentResolver(), gallery_image);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                Intent  msecondintent = new Intent(this , ColormeterActivity.class);
+                ByteArrayOutputStream bStream = new ByteArrayOutputStream();
+                photoBmp.compress(Bitmap.CompressFormat.PNG, 100, bStream);
+                byte[] byteArray = bStream.toByteArray();
+                msecondintent.putExtra("bitmapimg" ,byteArray);
+                startActivity(msecondintent);
+            }
+    }
+
 
     }
 }
