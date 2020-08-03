@@ -29,10 +29,12 @@ import static android.R.layout.select_dialog_item;
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawelayout;
     private ActionBarDrawerToggle mToggle;
-    private ImageView mcolormetet;
+    private ImageView mcolormeter;
+    private ImageView mpalletmaker;
     final String[] dialogoptions={"Take form Camera" , "Choose form Gallery"};
     private static final int PICK_IMAGE = 100;
     private String option = "";
+    private int chosen_feature = 0;
     Uri gallery_image;
 
 
@@ -41,7 +43,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mDrawelayout = findViewById(R.id.drawelayout);
-        mcolormetet = findViewById(R.id.colormeter);
+        mcolormeter = findViewById(R.id.colormeter);
+        mpalletmaker = findViewById(R.id.palletmaker);
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this , select_dialog_item , dialogoptions);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -61,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 if(which == 1)
                 {
                 option="gallery";
+
                     Intent gallery = new Intent(Intent.ACTION_PICK , MediaStore.Images.Media.INTERNAL_CONTENT_URI);
                     startActivityForResult(gallery , PICK_IMAGE);
 
@@ -89,9 +94,17 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        mcolormetet.setOnClickListener(new View.OnClickListener() {
+        mcolormeter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                chosen_feature = 2;
+                a.show();
+            }
+        });
+        mpalletmaker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chosen_feature=1;
                 a.show();
             }
         });
@@ -108,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.i("option is ::::" , option);
         if (option == "camera") {
 
 
@@ -117,9 +131,19 @@ public class MainActivity extends AppCompatActivity {
                 ByteArrayOutputStream bStream = new ByteArrayOutputStream();
                 mbitmap.compress(Bitmap.CompressFormat.PNG, 100, bStream);
                 byte[] byteArray = bStream.toByteArray();
-                Intent secondintent = new Intent(this, ColormeterActivity.class);
-                secondintent.putExtra("bitmapimg", byteArray);
-                startActivity(secondintent);
+                if (chosen_feature == 2)
+                {
+                    Intent secondintent = new Intent(this, ColormeterActivity.class);
+                    secondintent.putExtra("bitmapimg", byteArray);
+                    startActivity(secondintent);
+                }
+                if (chosen_feature ==1)
+                {
+                    Intent msecondintent = new Intent(this, palletmaker_firstActivity.class);
+                    msecondintent.putExtra("bitmapimg", byteArray);
+                    startActivity(msecondintent);
+                }
+
 
             }
 
@@ -127,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (option == "gallery")
         {
-            if (resultCode == RESULT_OK && requestCode == PICK_IMAGE){
+            if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
                 gallery_image = data.getData();
                 Bitmap photoBmp = null;
                 if (gallery_image != null) {
@@ -137,12 +161,22 @@ public class MainActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-                Intent  msecondintent = new Intent(this , ColormeterActivity.class);
                 ByteArrayOutputStream bStream = new ByteArrayOutputStream();
                 photoBmp.compress(Bitmap.CompressFormat.PNG, 100, bStream);
                 byte[] byteArray = bStream.toByteArray();
-                msecondintent.putExtra("bitmapimg" ,byteArray);
-                startActivity(msecondintent);
+                if (chosen_feature == 2)
+                {
+
+                    Intent msecondintent = new Intent(this, ColormeterActivity.class);
+                    msecondintent.putExtra("bitmapimg", byteArray);
+                    startActivity(msecondintent);
+                }
+                if (chosen_feature ==1)
+                {
+                    Intent msecondintent = new Intent(this, palletmaker_firstActivity.class);
+                    msecondintent.putExtra("bitmapimg", byteArray);
+                    startActivity(msecondintent);
+                }
             }
     }
 
