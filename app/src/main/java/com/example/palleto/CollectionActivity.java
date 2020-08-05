@@ -23,10 +23,6 @@ public class CollectionActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.collection_lst);
 
-        names.add("blue");
-        dates.add("tues");
-        des.add("no");
-
 
 
 

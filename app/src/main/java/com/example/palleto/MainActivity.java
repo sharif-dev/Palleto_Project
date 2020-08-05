@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mToggle;
     private ImageView mcolormeter;
     private ImageView mpalletmaker;
+    private ImageView mpopularpallets;
     final String[] dialogoptions={"Take form Camera" , "Choose form Gallery"};
     private static final int PICK_IMAGE = 100;
     private String option = "";
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         mDrawelayout = findViewById(R.id.drawelayout);
         mcolormeter = findViewById(R.id.colormeter);
         mpalletmaker = findViewById(R.id.palletmaker);
+        mpopularpallets = findViewById(R.id.owncolor);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this , select_dialog_item , dialogoptions);
 
@@ -108,6 +110,14 @@ public class MainActivity extends AppCompatActivity {
                 a.show();
             }
         });
+
+        mpopularpallets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(MainActivity.this , PopularpalletesActivity.class);
+                startActivity(in);
+            }
+        });
     }
 
     @Override
@@ -126,7 +136,8 @@ public class MainActivity extends AppCompatActivity {
 
 
             Bitmap mbitmap = (Bitmap) data.getExtras().get("data");
-            if (mbitmap != null) {
+            if (mbitmap != null)
+            {
 
                 ByteArrayOutputStream bStream = new ByteArrayOutputStream();
                 mbitmap.compress(Bitmap.CompressFormat.PNG, 100, bStream);

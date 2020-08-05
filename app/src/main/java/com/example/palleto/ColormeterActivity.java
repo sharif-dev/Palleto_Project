@@ -66,7 +66,7 @@ public class ColormeterActivity extends AppCompatActivity {
                         int outputColor = Color.HSVToColor(hsv);
 
                         show_hsv.setText("hsv:\n" + outputColor);
-                        show_rgb.setText("rgb:\n" + "," + r + "," + g + "," + b);
+                        show_rgb.setText("rgb:\n" + r + "," + g + "," + b);
                         show_hex.setText("Hex:\n" + "#" + Integer.toHexString(pixel));
                         showcolor.setCardBackgroundColor(Color.rgb(r, g, b));
 
