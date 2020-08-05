@@ -1,5 +1,6 @@
 package com.example.palleto;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -7,12 +8,15 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,13 +31,15 @@ public class palletmaker_firstActivity extends AppCompatActivity {
     Button mediancutalgorithme;
     Bitmap image_btmap;
     EditText count;
+    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_palletmaker_first);
         kmeanalgorithme = findViewById(R.id.k_mean);
         mediancutalgorithme = findViewById(R.id.meadian_cut);
-
+        progressBar=findViewById(R.id.progressbar);
+        progressBar.setVisibility(View.INVISIBLE);
         image_ = findViewById(R.id.image_one);
         count = findViewById(R.id.color_count);
 
@@ -45,20 +51,38 @@ public class palletmaker_firstActivity extends AppCompatActivity {
         kmeanalgorithme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList<Pixel> L = GetPixelsFromImage(image_btmap);
-                int k = Integer.valueOf(String.valueOf(count.getText()));
 
-                ArrayList<Pixel> Lk = kmeans(L, k);
-                Log.i("hereeeeeeee!!!!" , String.valueOf(Lk.indexOf(0)));
-//
-//                color_1.setBackgroundColor(Color.rgb(Lk.get(0).red , Lk.get(0).green , Lk.get(0).blue));
-//                color_2.setBackgroundColor(Color.rgb(Lk.get(1).red , Lk.get(1).green , Lk.get(1).blue));
-//                color_3.setBackgroundColor(Color.rgb(Lk.get(2).red , Lk.get(2).green , Lk.get(2).blue));
-//                color_4.setBackgroundColor(Color.rgb(Lk.get(3).red , Lk.get(3).green , Lk.get(3).blue));
-//                color_5.setBackgroundColor(Color.rgb(Lk.get(4).red , Lk.get(4).green , Lk.get(4).blue));
+                final ArrayList<Pixel> L = GetPixelsFromImage(image_btmap);
+                final int k = Integer.valueOf(String.valueOf(count.getText()));
+                if (k >= 0 && k <= 6)
+                {
+                    progressBar.setVisibility(View.VISIBLE);
 
+                Thread t2 = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ArrayList<Pixel> Lk = kmeans(L, k);
+                        Intent intent = new Intent(palletmaker_firstActivity.this, Save_MakePalletActivity.class);
+                        intent.putExtra("colorlist", Lk);
 
+                        ByteArrayOutputStream bStream = new ByteArrayOutputStream();
+                        image_btmap.compress(Bitmap.CompressFormat.PNG, 100, bStream);
+                        byte[] byteArray = bStream.toByteArray();
+                        intent.putExtra("image_show" , byteArray);
+                        startActivity(intent);
+                    }
+                });
+                t2.start();
 
+            }
+                else
+                {
+                    AlertDialog.Builder alert = new AlertDialog.Builder(palletmaker_firstActivity.this);
+                    alert.setTitle("Notice");
+                    alert.setMessage("Number is not valid!");
+                    alert.create().show();
+
+                }
             }
         });
     }
@@ -72,7 +96,7 @@ public class palletmaker_firstActivity extends AppCompatActivity {
         int green;
         int blue;
         Pixel p;
-        System.out.println("Loading pixels...");
+//        System.out.println("Loading pixels...");
         for (int i=0; i<height; i++){
             for (int j=0; j<width; j++){
                 int pixel =image.getPixel(j , i);
@@ -83,16 +107,17 @@ public class palletmaker_firstActivity extends AppCompatActivity {
                 L.add(p);
             }
         }
-        System.out.println("All pixels loaded!");
+//        System.out.println("All pixels loaded!");
         return L;
     }
-    static ArrayList<Pixel> kmeans(ArrayList<Pixel> L, int K){
+    ArrayList<Pixel> kmeans(ArrayList<Pixel> L, int K){
+
         ArrayList<Pixel> Lk = MakeKRandomPixels(K);
         int T = L.size();
         int i = 0;
         int counter = 0;
         while(true){
-            System.out.println("Itération n°"+i);
+//            System.out.println("Itération n°"+i);
 
             assigningMembership(L, Lk, K);
 
@@ -103,7 +128,7 @@ public class palletmaker_firstActivity extends AppCompatActivity {
             String b = toString(newPalette);
 
             if(a.equals(b)){
-                System.out.println("Convergence");
+//                System.out.println("Convergence");
                 break;
             }
 
@@ -111,13 +136,13 @@ public class palletmaker_firstActivity extends AppCompatActivity {
             i++;
 
             if (i==1000){
-                System.out.println("Limite atteinte ! ************\n Voici Lk");
-                PrintPixelsList(Lk);
+//                System.out.println("Limite atteinte ! ************\n Voici Lk");
+//                PrintPixelsList(Lk);
                 break;
             }
 
         }
-        System.out.println("***************************");
+//        System.out.println("***************************");
         PrintPixelsList(Lk);
         return Lk;
     }
@@ -141,7 +166,7 @@ public class palletmaker_firstActivity extends AppCompatActivity {
 //        Log.i("skjvhkdjshbkhkfj" , String.valueOf(L.size()));
         for (int i=0; i<L.size(); i++){
             p = L.get(i);
-            System.out.format("Red : %d --- Green : %d --- Blue : %d\n", p.red, p.green, p.blue);
+//            System.out.format("Red : %d --- Green : %d --- Blue : %d\n", p.red, p.green, p.blue);
         }
     }
 

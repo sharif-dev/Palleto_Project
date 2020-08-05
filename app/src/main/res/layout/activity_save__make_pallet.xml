@@ -1,52 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Save_MakePalletActivity">
+    tools:context=".Save_MakePalletActivity"
+    android:background="@color/firtpage_bg_color"
+    >
 
-
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="3.5dp"
+        android:gravity="center" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:id="@+id/extractedcolors"
+        android:layout_width="400dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/image"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_margin="2dp"
+        >
 
-                <View
-                    android:id="@+id/color_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="60dp"
-                    android:layout_weight="1"
-                    android:background="@color/drawer_bg"
-                    />
-                <View
-                    android:id="@+id/color_2"
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="60dp"
-                    android:layout_weight="1"
-                    android:background="@color/design_default_color_primary"/>
-                <View
-                    android:id="@+id/color_3"
-                    android:background="@color/drawer_icon_color"
-                    android:layout_width="wrap_content"
-                    android:layout_height="60dp"
-                    android:layout_weight="1"
-                   />
-                <View
-                    android:id="@+id/color_4"
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="60dp"
-                    android:layout_weight="1"
-                    android:background="@color/firtpage_bg_color"
-                     />
-                <View
-                    android:id="@+id/color_5"
-        android:background="@color/cardview_txt_color"
-                    android:layout_width="wrap_content"
-                    android:layout_height="60dp"
-                    android:layout_weight="1"
-                />
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/extractedcolors_hex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_below="@id/extractedcolors"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="23dp"
+        android:layout_below="@+id/extractedcolors_hex">
+
+        <ImageView
+            android:id="@+id/save_tocollecton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_save"
+            android:layout_marginLeft="135dp"/>
+
+        <ImageView
+            android:id="@+id/add_to_favorits"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_favorite"
+            android:layout_marginLeft="40dp"
+            />
+
+    </LinearLayout>
+</RelativeLayout>

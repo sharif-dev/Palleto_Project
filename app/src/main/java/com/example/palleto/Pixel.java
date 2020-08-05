@@ -1,6 +1,8 @@
 package com.example.palleto;
 
-public class Pixel {
+import java.io.Serializable;
+
+public class Pixel implements Serializable {
     int red;
     int green;
     int blue;
