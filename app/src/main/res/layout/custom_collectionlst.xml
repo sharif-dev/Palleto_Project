@@ -19,57 +19,73 @@
             android:layout_width="match_parent"
             android:layout_height="130dp"
             android:orientation="horizontal">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_margin="12dp"
-            >
+            <ImageView
+                android:id="@+id/click_pallet"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:src="@drawable/ic_palette"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"                />
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:orientation="vertical"-->
+<!--            android:layout_margin="12dp"-->
+<!--            >-->
 
-            <LinearLayout
-                android:id="@+id/first_color"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#ffffff"
-                android:orientation="horizontal" />
-            <LinearLayout
-                android:id="@+id/second_color"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/firtpage_bg_color"
-                android:orientation="horizontal" />
-            <LinearLayout
-                android:id="@+id/third_color"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/colorAccent"
-                android:orientation="horizontal" />
-            <LinearLayout
-                android:id="@+id/forth_color"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/design_default_color_primary"
-                android:orientation="horizontal" />
-            <LinearLayout
-                android:id="@+id/fifth_color"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/drawer_bg"
-                android:orientation="horizontal" />
+<!--            <LinearLayout-->
 
+<!--                android:id="@+id/first_color"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:background="#ffffff"-->
+<!--                android:orientation="horizontal" />-->
+<!--            <LinearLayout-->
+<!--                android:id="@+id/second_color"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:background="@color/firtpage_bg_color"-->
+<!--                android:orientation="horizontal" />-->
+<!--            <LinearLayout-->
+<!--                android:id="@+id/third_color"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:background="@color/colorAccent"-->
+<!--                android:orientation="horizontal" />-->
+<!--            <LinearLayout-->
+<!--                android:id="@+id/forth_color"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:background="@color/design_default_color_primary"-->
+<!--                android:orientation="horizontal" />-->
+<!--            <LinearLayout-->
+<!--                android:id="@+id/fifth_color"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:background="@color/drawer_bg"-->
+<!--                android:orientation="horizontal" />-->
 
-        </LinearLayout>
+<!--            <LinearLayout-->
+<!--                android:id="@+id/six_color"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:background="@color/drawer_bg"-->
+<!--                android:orientation="horizontal" />-->
+
+<!--        </LinearLayout>-->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1.5"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginLeft="12dp">
 
             <TextView
                 android:id="@+id/collection_name"

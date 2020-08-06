@@ -5,30 +5,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CollectionAdaptor extends RecyclerView.Adapter<CollectionAdaptor.ViewHolder> {
 
 
     private LayoutInflater layoutInflater ;
-    private List<String> mnames;
-//    private List<String> mcolors;
-    private List<String> mdescriptions;
-    private List<String> mdates;
+    ArrayList<Pallete> list ;
 
-    public CollectionAdaptor(Context context , List<String> name  ,List<String> descriptions  , List<String> dates)  {
+    public CollectionAdaptor(Context context , ArrayList<Pallete> list_of_pallets )  {
         this.layoutInflater = LayoutInflater.from(context);
-        this.mnames = name;
-//        this.mcolors = colors;
-        this.mdescriptions = descriptions;
-        this.mdates = dates;
+        this.list = list_of_pallets;
+
     }
 
     @NonNull
@@ -40,35 +38,51 @@ public class CollectionAdaptor extends RecyclerView.Adapter<CollectionAdaptor.Vi
 
     @Override
     public void onBindViewHolder(@NonNull CollectionAdaptor.ViewHolder holder, int position) {
-            holder.name.setText(mnames.get(position));
-            holder.Date.setText(mdates.get(position));
-            holder.Description.setText(mdescriptions.get(position));
-//            holder.first_color.setBackgroundColor(Integer.parseInt(mcolors.get(position)));
-//            holder.second_color.setBackgroundColor(Integer.parseInt(mcolors.get(position)));
-//             holder.third_color.setBackgroundColor(Integer.parseInt(mcolors.get(position)));
-//            holder.forth_color.setBackgroundColor(Integer.parseInt(mcolors.get(position)));
-//            holder.fifth_color.setBackgroundColor(Integer.parseInt(mcolors.get(position)));
+
+        holder.name.setText(list.get(position).getName());
+        holder.Date.setText(list.get(position).getDate());
+        holder.Description.setText(list.get(position).getDescription());
+        holder.click.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+
+
     }
     @Override
     public int getItemCount() {
-        return mnames.size();
+        return list.size();
     }
     public class ViewHolder extends RecyclerView.ViewHolder
     {
         TextView name , Date , Description;
-        LinearLayout first_color  ,second_color , third_color , forth_color , fifth_color;
-        public ViewHolder(@NonNull View itemView) {
+        LinearLayout l1,l2,l3,l4,l5,l6;
+        ImageView click;
+
+        public ViewHolder(@NonNull View itemView)  {
             super(itemView);
             name = itemView.findViewById(R.id.collection_name);
             Date = itemView.findViewById(R.id.collection_date);
             Description = itemView.findViewById(R.id.collection_description);
-//            first_color = itemView.findViewById(R.id.first_color);
-//            second_color = itemView.findViewById(R.id.second_color);
-//            third_color = itemView.findViewById(R.id.third_color);
-//            forth_color= itemView.findViewById(R.id.forth_color);
-//            fifth_color= itemView.findViewById(R.id.fifth_color);
+            click = itemView.findViewById(R.id.click_pallet);
+//            l1=itemView.findViewById(R.id.first_color);
+//            l2=itemView.findViewById(R.id.second_color);
+//            l3=itemView.findViewById(R.id.third_color);
+//            l4=itemView.findViewById(R.id.forth_color);
+//            l5=itemView.findViewById(R.id.fifth_color);
+//            l6=itemView.findViewById(R.id.six_color);
+
+
+
+
 
         }
+
+
     }
 
 }
