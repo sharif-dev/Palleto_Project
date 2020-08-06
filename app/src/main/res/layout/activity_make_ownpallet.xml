@@ -142,6 +142,7 @@
             android:layout_width="90dp"
             android:layout_height="50dp"
             android:layout_marginLeft="90dp"
-            android:src="@drawable/ic_save" />
+            android:src="@drawable/ic_save"
+            />
     </LinearLayout>
 </LinearLayout>
