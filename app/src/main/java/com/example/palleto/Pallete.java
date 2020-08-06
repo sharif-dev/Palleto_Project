@@ -1,9 +1,10 @@
 package com.example.palleto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Pallete {
+public class Pallete implements Serializable {
 
     private String date;
     private String Description;
@@ -11,10 +12,11 @@ public class Pallete {
     private String name;
     private String[] colors;
 
-    public Pallete(String name, String[] colors) {
+    public Pallete(String name, String[] colors , Boolean like) {
 
         this.name = name;
         this.colors = colors;
+        this.is_liked = like;
     }
 
     public Boolean getIs_liked() {

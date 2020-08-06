@@ -2,6 +2,7 @@ package com.example.palleto;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ public class CollectionAdaptor extends RecyclerView.Adapter<CollectionAdaptor.Vi
        this.layoutInflater = LayoutInflater.from(context);
         this.list = list_of_pallets;
         this.context=context;
+        Log.i("sjhd" , String.valueOf(list.size()));
 
     }
 
@@ -42,23 +44,27 @@ public class CollectionAdaptor extends RecyclerView.Adapter<CollectionAdaptor.Vi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CollectionAdaptor.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CollectionAdaptor.ViewHolder holder, final int position) {
 
         holder.name.setText(list.get(position).getName());
         Date date= new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy / HH:mm:ss");
         holder.Date.setText(formatter.format(date));
-        holder.Description.setText(list.get(position).getColors().length);
+        if (list.get(position).getIs_liked())
+            holder.dislike.setImageResource(R.drawable.ic_favorite_black);
+
+
+//        holder.Description.setText(list.get(position).getColors().length);
         holder.click.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
                 //TODO
-//
-//                Intent newIntent = new Intent(context, pallet_detialsActivity.class);
-//                newIntent.putExtra("show" , list);
-//                context.startActivity(newIntent);
+
+                Intent newIntent = new Intent(context, pallet_detialsActivity.class);
+                newIntent.putExtra("show" , list.get(position));
+                context.startActivity(newIntent);
 
 
 
@@ -84,7 +90,7 @@ public class CollectionAdaptor extends RecyclerView.Adapter<CollectionAdaptor.Vi
             super(itemView);
             name = itemView.findViewById(R.id.collection_name);
             Date = itemView.findViewById(R.id.collection_date);
-            Description = itemView.findViewById(R.id.collection_description);
+//            Description = itemView.findViewById(R.id.collection_description);
             click = itemView.findViewById(R.id.click_pallet);
             dislike = itemView.findViewById(R.id.like_or_not);
 

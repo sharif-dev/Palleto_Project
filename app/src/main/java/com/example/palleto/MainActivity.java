@@ -113,17 +113,15 @@ public class MainActivity extends AppCompatActivity {
                 int id=menuItem.getItemId();
 
                 switch (menuItem.getItemId()) {
-                    case R.id.populars_p:
+                    case R.id.populars_p: {
+                        Intent intents = new Intent(MainActivity.this, PopularpalletesActivity.class);
+                        startActivity(intents);
+                    }
 
-                        Intent intent = new Intent(MainActivity.this, PopularpalletesActivity.class);
-                        startActivity(intent);
-
-
-                    case R.id.collection:
-
+                    case R.id.collection: {
                         Intent intent2 = new Intent(MainActivity.this, CollectionActivity.class);
                         startActivity(intent2);
-
+                    }
 
 
                 }
