@@ -13,7 +13,7 @@ public class Pallet {
     public String name;
 
     @ColumnInfo(name = "rgb")
-    public String rgb = "";
+    public String code = "";
 
     @ColumnInfo(name = "is_favorite")
     public boolean is_favorite = false;

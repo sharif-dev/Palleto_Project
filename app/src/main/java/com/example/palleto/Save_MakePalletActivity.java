@@ -90,34 +90,31 @@ public class Save_MakePalletActivity extends AppCompatActivity {
             linearLayout2.addView(color_hex[i]);
 
         }
+    }
 
+    public void like(View view) {
+        if (!is_saved) {
+            Context context = getApplicationContext();
+            CharSequence text = "Save Palet First!";
+            int duration = Toast.LENGTH_SHORT;
 
-        like_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!is_saved) {
-                    Context context = getApplicationContext();
-                    CharSequence text = "Save Palet First!";
-                    int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+            return;
+        }
+        Pallet pallet = db.palletDAO().loadByName(file_name);
+        pallet.is_favorite = !is_liked;
+        db.palletDAO().delete_by_name(file_name);
+        db.palletDAO().insert_Pallet(pallet);
+        is_liked = !is_liked;
+    }
 
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
-                    return;
-                }
-                Pallet pallet = db.palletDAO().loadByName(file_name);
-                pallet.is_favorite = !pallet.is_favorite;
-                db.palletDAO().delete_by_name(file_name);
-                db.palletDAO().insert_Pallet(pallet);
-            }
-        });
+    public void save_pallet(View view) {
+        openDialog();
+    }
 
-        save_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO by nilofar
-            }
-        });
-
-
+    public void openDialog() {
+        Save_Pallet_Dialog exampleDialog = new Save_Pallet_Dialog(file_hex_code);
+        exampleDialog.show(getSupportFragmentManager(), "save dialog");
     }
 }
