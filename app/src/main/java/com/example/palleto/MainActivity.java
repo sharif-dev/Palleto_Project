@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private String option = "";
     private int chosen_feature = 0;
     Uri gallery_image;
-    public static AppDatabase db;
+    public AppDatabase db;
 
 
     @Override

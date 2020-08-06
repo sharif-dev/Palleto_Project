@@ -12,7 +12,7 @@ public interface PalletDAO {
     List<Pallet> getAll();
 
     @Query("SELECT * FROM pallet WHERE name = (:name)")
-    Pallet loadAllByIds(String name);
+    Pallet loadByName(String name);
 
     @Query("SELECT * FROM pallet WHERE is_favorite")
     List<Pallet> loadFavorites();

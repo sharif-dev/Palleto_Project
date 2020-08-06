@@ -3,19 +3,23 @@ package com.example.palleto;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.room.Room;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -32,10 +36,19 @@ public class Save_MakePalletActivity extends AppCompatActivity {
     ImageView save_btn;
     ImageView like_btn;
 
+    public AppDatabase db;
+    public boolean is_saved = false;
+    public boolean is_liked = false;
+    public String file_name;
+    public String file_hex_code = "";
+
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "pallet_db").build();
+
         setContentView(R.layout.activity_save__make_pallet);
         mlinearlayout = findViewById(R.id.extractedcolors);
         imageView = findViewById(R.id.image);
@@ -50,8 +63,7 @@ public class Save_MakePalletActivity extends AppCompatActivity {
         color_hex = new TextView[pallet_colores.size()];
 
 
-
-        for (int i=0; i< colors.length;i++) {
+        for (int i = 0; i < colors.length; i++) {
 
             colors[i] = new CardView(this);
             color_hex[i] = new TextView(this);
@@ -59,7 +71,17 @@ public class Save_MakePalletActivity extends AppCompatActivity {
             colors[i].setLayoutParams(new LinearLayout.LayoutParams(90, 90));
             colors[i].setRotation(45);
             colors[i].setRadius(12);
-            String hex = String.format("#%02x%02x%02x", pallet_colores.get(i).red, pallet_colores.get(i).green, pallet_colores.get(i).blue);
+            final String hex = String.format("#%02x%02x%02x", pallet_colores.get(i).red, pallet_colores.get(i).green, pallet_colores.get(i).blue);
+            Handler handler = new Handler();
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    if (file_hex_code.length() != 0) {
+                        file_hex_code += " ";
+                    }
+                    file_hex_code += hex;
+                }
+            });
             color_hex[i].setText(hex);
             color_hex[i].setTextSize(15);
             color_hex[i].setPadding(10, 0, 10, 0);
@@ -70,21 +92,31 @@ public class Save_MakePalletActivity extends AppCompatActivity {
         }
 
 
-
         like_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO by nilofar
+                if (!is_saved) {
+                    Context context = getApplicationContext();
+                    CharSequence text = "Save Palet First!";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                    return;
+                }
+                Pallet pallet = db.palletDAO().loadByName(file_name);
+                pallet.is_favorite = !pallet.is_favorite;
+                db.palletDAO().delete_by_name(file_name);
+                db.palletDAO().insert_Pallet(pallet);
             }
         });
 
-        save_btn .setOnClickListener(new View.OnClickListener() {
+        save_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO by nilofar
             }
         });
-
 
 
     }
