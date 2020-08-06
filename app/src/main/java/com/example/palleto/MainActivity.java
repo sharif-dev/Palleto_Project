@@ -167,67 +167,63 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Log.i("option is ::::" , option);
-        if (option == "camera") {
+
+        if(resultCode != RESULT_CANCELED) {
+            super.onActivityResult(requestCode, resultCode, data);
+            Log.i("option is ::::", option);
+            if (option == "camera") {
 
 
-            Bitmap mbitmap = (Bitmap) data.getExtras().get("data");
-            if (mbitmap != null)
-            {
+                Bitmap mbitmap = (Bitmap) data.getExtras().get("data");
+                if (mbitmap != null) {
 
-                ByteArrayOutputStream bStream = new ByteArrayOutputStream();
-                mbitmap.compress(Bitmap.CompressFormat.PNG, 100, bStream);
-                byte[] byteArray = bStream.toByteArray();
-                if (chosen_feature == 2)
-                {
-                    Intent secondintent = new Intent(this, ColormeterActivity.class);
-                    secondintent.putExtra("bitmapimg", byteArray);
-                    startActivity(secondintent);
+                    ByteArrayOutputStream bStream = new ByteArrayOutputStream();
+                    mbitmap.compress(Bitmap.CompressFormat.PNG, 100, bStream);
+                    byte[] byteArray = bStream.toByteArray();
+                    if (chosen_feature == 2) {
+                        Intent secondintent = new Intent(this, ColormeterActivity.class);
+                        secondintent.putExtra("bitmapimg", byteArray);
+                        startActivity(secondintent);
+                    }
+                    if (chosen_feature == 1) {
+                        Intent msecondintent = new Intent(this, palletmaker_firstActivity.class);
+                        msecondintent.putExtra("bitmapimg", byteArray);
+                        startActivity(msecondintent);
+                    }
+
+
                 }
-                if (chosen_feature ==1)
-                {
-                    Intent msecondintent = new Intent(this, palletmaker_firstActivity.class);
-                    msecondintent.putExtra("bitmapimg", byteArray);
-                    startActivity(msecondintent);
+
+            }
+
+            if (option == "gallery") {
+                if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
+                    gallery_image = data.getData();
+                    Bitmap photoBmp = null;
+                    if (gallery_image != null) {
+                        try {
+                            photoBmp = MediaStore.Images.Media.getBitmap(this.getContentResolver(), gallery_image);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    ByteArrayOutputStream bStream = new ByteArrayOutputStream();
+                    photoBmp.compress(Bitmap.CompressFormat.PNG, 100, bStream);
+                    byte[] byteArray = bStream.toByteArray();
+                    if (chosen_feature == 2) {
+
+                        Intent msecondintent = new Intent(this, ColormeterActivity.class);
+                        msecondintent.putExtra("bitmapimg", byteArray);
+                        startActivity(msecondintent);
+                    }
+                    if (chosen_feature == 1) {
+                        Intent msecondintent = new Intent(this, palletmaker_firstActivity.class);
+                        msecondintent.putExtra("bitmapimg", byteArray);
+                        startActivity(msecondintent);
+                    }
                 }
-
-
             }
 
         }
-
-        if (option == "gallery")
-        {
-            if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
-                gallery_image = data.getData();
-                Bitmap photoBmp = null;
-                if (gallery_image != null) {
-                    try {
-                        photoBmp = MediaStore.Images.Media.getBitmap(this.getContentResolver(), gallery_image);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                ByteArrayOutputStream bStream = new ByteArrayOutputStream();
-                photoBmp.compress(Bitmap.CompressFormat.PNG, 100, bStream);
-                byte[] byteArray = bStream.toByteArray();
-                if (chosen_feature == 2)
-                {
-
-                    Intent msecondintent = new Intent(this, ColormeterActivity.class);
-                    msecondintent.putExtra("bitmapimg", byteArray);
-                    startActivity(msecondintent);
-                }
-                if (chosen_feature ==1)
-                {
-                    Intent msecondintent = new Intent(this, palletmaker_firstActivity.class);
-                    msecondintent.putExtra("bitmapimg", byteArray);
-                    startActivity(msecondintent);
-                }
-            }
-    }
-
-
     }
 }

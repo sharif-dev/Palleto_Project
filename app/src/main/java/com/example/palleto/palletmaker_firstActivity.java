@@ -75,17 +75,20 @@ public class palletmaker_firstActivity extends AppCompatActivity {
                 });
                 t2.start();
 
+
             }
                 else
                 {
                     AlertDialog.Builder alert = new AlertDialog.Builder(palletmaker_firstActivity.this);
                     alert.setTitle("Notice");
-                    alert.setMessage("Number is not valid!");
+                    alert.setMessage("Number is not valid!\nPlease enter a number less that 7");
                     alert.create().show();
 
                 }
             }
         });
+        progressBar.setVisibility(View.INVISIBLE);
+
 
 
 

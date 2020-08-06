@@ -116,6 +116,14 @@ public class IntroduceActivity extends AppCompatActivity {
                     nextbtn.setText("Finish");
                     backbtn.setText("Back");
 
+                    nextbtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(new Intent(IntroduceActivity.this , MainActivity.class));
+                            finish();
+                        }
+                    });
+
 
                 }
            else{
