@@ -2,6 +2,7 @@ package com.example.palleto;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.palette.graphics.Palette;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -85,6 +86,45 @@ public class palletmaker_firstActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+
+        mediancutalgorithme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Palette palette = Palette.generate(image_btmap);
+                ArrayList<Pixel> colors = new ArrayList<Pixel>();
+                int default_ = 0x000000;
+                int vibrant = palette.getVibrantColor(default_);
+                int vibrantLight = palette.getLightVibrantColor(default_);
+                int vibrantDark = palette.getDarkVibrantColor(default_);
+                int muted = palette.getMutedColor(default_);
+                int mutedLight = palette.getLightMutedColor(default_);
+                int mutedDark = palette.getDarkMutedColor(default_);
+                if (vibrant != 0)
+                     colors.add(new Pixel(Color.red(vibrant) , Color.green(vibrant) , Color.blue(vibrant)));
+                if (vibrantLight != 0)
+                    colors.add(new Pixel(Color.red(vibrantLight) , Color.green(vibrantLight) , Color.blue(vibrantLight)));
+                if (vibrantDark != 0)
+                    colors.add(new Pixel(Color.red(vibrantDark), Color.green(vibrantDark) , Color.blue(vibrantDark)));
+                if (muted != 0)
+                    colors.add(new Pixel(Color.red(muted) , Color.green(muted) , Color.blue(muted)));
+                if (mutedLight != 0)
+                    colors.add(new Pixel(Color.red(mutedLight) , Color.green(mutedLight) , Color.blue(mutedLight)));
+                if (mutedDark != 0)
+                    colors.add(new Pixel(Color.red(mutedDark) , Color.green(mutedDark) , Color.blue(mutedDark)));
+
+                Intent intent = new Intent(palletmaker_firstActivity.this, Save_MakePalletActivity.class);
+                intent.putExtra("colorlist", colors);
+                ByteArrayOutputStream bStream = new ByteArrayOutputStream();
+                image_btmap.compress(Bitmap.CompressFormat.PNG, 100, bStream);
+                byte[] byteArray = bStream.toByteArray();
+                intent.putExtra("image_show" , byteArray);
+                startActivity(intent);
+
+
+            }
+        });
     }
 
 
@@ -96,7 +136,6 @@ public class palletmaker_firstActivity extends AppCompatActivity {
         int green;
         int blue;
         Pixel p;
-//        System.out.println("Loading pixels...");
         for (int i=0; i<height; i++){
             for (int j=0; j<width; j++){
                 int pixel =image.getPixel(j , i);
@@ -107,7 +146,6 @@ public class palletmaker_firstActivity extends AppCompatActivity {
                 L.add(p);
             }
         }
-//        System.out.println("All pixels loaded!");
         return L;
     }
     ArrayList<Pixel> kmeans(ArrayList<Pixel> L, int K){
@@ -117,7 +155,6 @@ public class palletmaker_firstActivity extends AppCompatActivity {
         int i = 0;
         int counter = 0;
         while(true){
-//            System.out.println("Itération n°"+i);
 
             assigningMembership(L, Lk, K);
 
@@ -128,7 +165,6 @@ public class palletmaker_firstActivity extends AppCompatActivity {
             String b = toString(newPalette);
 
             if(a.equals(b)){
-//                System.out.println("Convergence");
                 break;
             }
 
@@ -136,14 +172,11 @@ public class palletmaker_firstActivity extends AppCompatActivity {
             i++;
 
             if (i==1000){
-//                System.out.println("Limite atteinte ! ************\n Voici Lk");
-//                PrintPixelsList(Lk);
+
                 break;
             }
 
         }
-//        System.out.println("***************************");
-        PrintPixelsList(Lk);
         return Lk;
     }
     static ArrayList<Pixel> MakeKRandomPixels(int k){
@@ -157,17 +190,6 @@ public class palletmaker_firstActivity extends AppCompatActivity {
             rp = new Pixel(0,0,0);
         }
         return Rk;
-    }
-
-
-
-    static void PrintPixelsList(ArrayList<Pixel> L){
-        Pixel p;
-//        Log.i("skjvhkdjshbkhkfj" , String.valueOf(L.size()));
-        for (int i=0; i<L.size(); i++){
-            p = L.get(i);
-//            System.out.format("Red : %d --- Green : %d --- Blue : %d\n", p.red, p.green, p.blue);
-        }
     }
 
 

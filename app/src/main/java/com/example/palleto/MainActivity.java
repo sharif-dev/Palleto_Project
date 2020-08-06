@@ -20,6 +20,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.google.android.material.navigation.NavigationView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -28,6 +31,7 @@ import static android.R.layout.select_dialog_item;
 
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawelayout;
+    private NavigationView navigationView;
     private ActionBarDrawerToggle mToggle;
     private ImageView mcolormeter;
     private ImageView mpalletmaker;
@@ -44,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mDrawelayout = findViewById(R.id.drawelayout);
+        navigationView = findViewById(R.id.navigation_view);
+        navigationView.bringToFront();
+
         mcolormeter = findViewById(R.id.colormeter);
         mpalletmaker = findViewById(R.id.palletmaker);
         mpopularpallets = findViewById(R.id.owncolor);
@@ -96,6 +103,23 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                int id=menuItem.getItemId();
+
+                switch (menuItem.getItemId()) {
+                    case R.id.populars_p:
+
+                        Intent intent = new Intent(MainActivity.this, PopularpalletesActivity.class);
+                        startActivity(intent);
+
+                }
+                        return true;
+
+            }
+        });
+
         mcolormeter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,8 +138,9 @@ public class MainActivity extends AppCompatActivity {
         mpopularpallets.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(MainActivity.this , PopularpalletesActivity.class);
-                startActivity(in);
+                Intent third=new Intent(MainActivity.this,Make_ownpalletActivity.class);
+                startActivity(third);
+
             }
         });
     }

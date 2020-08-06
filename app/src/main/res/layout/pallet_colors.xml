@@ -4,8 +4,16 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="#000000">
-
+    android:background="@color/firtpage_bg_color">
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/firtpage_bg_color"
+    android:text="Make your special pallet"
+    android:textColor="@color/cardview_txt_color"
+    android:gravity="center"
+    android:layout_margin="4dp"
+    android:textSize="30dp"/>
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -13,9 +21,9 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="45dp"
+        android:layout_marginLeft="80dp"
         android:orientation="vertical"
-        android:paddingTop="160dp">
+        android:paddingTop="90dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/first_diamond"
@@ -77,9 +85,9 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#000000"
+        android:background="@color/firtpage_bg_color"
         android:orientation="vertical"
-        android:paddingTop="160dp">
+        android:paddingTop="90dp">
 
         <TextView
             android:id="@+id/first_diamond_hex"
@@ -136,9 +144,9 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#000000"
+        android:background="@color/firtpage_bg_color"
         android:orientation="vertical"
-        android:paddingTop="160dp"
+        android:paddingTop="90dp"
         android:gravity="center"
         android:paddingLeft="15dp">
 
@@ -201,7 +209,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="98dp"
-        android:layout_marginLeft="45dp">
+        android:layout_marginLeft="70dp">
 
         <ImageView
             android:id="@+id/favorit_pallet"

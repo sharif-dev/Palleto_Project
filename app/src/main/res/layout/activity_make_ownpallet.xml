@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dynamic_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/firtpage_bg_color">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/firtpage_bg_color"
+        android:text="Make your special pallet"
+        android:textColor="@color/cardview_txt_color"
+        android:gravity="center"
+        android:layout_margin="4dp"
+        android:textSize="30dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:orientation="vertical"
+            android:paddingTop="90dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/first_diamond"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="30dp"
+                android:rotation="45"
+                app:cardCornerRadius="15dp"
+                android:elevation="20dp"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/second_diamond"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:rotation="45"
+                android:layout_marginLeft="10dp"
+                app:cardCornerRadius="15dp"
+                android:elevation="20dp"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/third_diamond"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="10dp"
+
+                android:rotation="45"
+                app:cardCornerRadius="15dp"
+                android:elevation="20dp"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/forth_diamond"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:rotation="45"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                app:cardCornerRadius="15dp"
+                android:elevation="20dp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/firtpage_bg_color"
+            android:orientation="vertical"
+            android:paddingTop="90dp">
+
+            <TextView
+                android:id="@+id/first_diamond_hex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="hexnumber"
+                android:textAlignment="center"
+                android:textColor="#ffffff"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/second_diamond_hex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="hexnumber"
+                android:layout_marginTop="45dp"
+                android:textAlignment="center"
+                android:textColor="#ffffff"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/third_diamond_hex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="hexnumber"
+                android:layout_marginTop="40dp"
+                android:textAlignment="center"
+                android:textColor="#ffffff"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/forth_diamond_hex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="hexnumber"
+                android:textAlignment="center"
+                android:layout_marginTop="33dp"
+                android:textColor="#ffffff"
+                android:textSize="15dp" />
+
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="98dp"
+        android:layout_marginLeft="70dp">
+
+        <ImageView
+            android:id="@+id/favorit_pallet"
+            android:layout_width="90dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_favorite"/>
+
+        <ImageView
+            android:id="@+id/save_pallet"
+            android:layout_width="90dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="90dp"
+            android:src="@drawable/ic_save" />
+    </LinearLayout>
+</LinearLayout>
