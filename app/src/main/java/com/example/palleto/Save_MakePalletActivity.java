@@ -23,7 +23,6 @@ import java.util.ArrayList;
 
 public class Save_MakePalletActivity extends AppCompatActivity {
     ArrayList<Pixel> pallet_colores;
-    ArrayList pallet_colores2;
     CardView[] colors;
     TextView[] color_hex;
 
@@ -32,8 +31,7 @@ public class Save_MakePalletActivity extends AppCompatActivity {
     ImageView imageView;
     ImageView save_btn;
     ImageView like_btn;
-    @SuppressLint("WrongThread")
-    @RequiresApi(api = Build.VERSION_CODES.O)
+
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,18 +43,15 @@ public class Save_MakePalletActivity extends AppCompatActivity {
         like_btn = findViewById(R.id.add_to_favorits);
         linearLayout2 = findViewById(R.id.extractedcolors_hex);
         pallet_colores = (ArrayList<Pixel>) getIntent().getSerializableExtra("colorlist");
-        pallet_colores2 = (ArrayList) getIntent().getSerializableExtra("colorlist2");
         byte[] byteArray = this.getIntent().getByteArrayExtra("image_show");
         Bitmap bitmap_show = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
         imageView.setImageBitmap(bitmap_show);
-
-            colors = new CardView[pallet_colores.size()];
-            color_hex = new TextView[pallet_colores.size()];
-
+        colors = new CardView[pallet_colores.size()];
+        color_hex = new TextView[pallet_colores.size()];
 
 
-        //////KMEAN
-        for (int i=0; i< pallet_colores.size();i++) {
+
+        for (int i=0; i< colors.length;i++) {
 
             colors[i] = new CardView(this);
             color_hex[i] = new TextView(this);
@@ -74,26 +69,6 @@ public class Save_MakePalletActivity extends AppCompatActivity {
 
         }
 
-//        ////MEDIAN
-//
-//
-//        for (int i=0; i< pallet_colores2.size();i++) {
-//
-//            colors[i] = new CardView(this);
-//            color_hex[i] = new TextView(this);
-//            colors[i].setBackgroundColor(Color.rgb(Color.red((Long) pallet_colores2.get(i)) , Color.green((Long) pallet_colores2.get(i)) , Color.blue((Long)pallet_colores2.get(i))));
-//            colors[i].setLayoutParams(new LinearLayout.LayoutParams(100, 100));
-//            colors[i].setRotation(45);
-//            colors[i].setRadius(12);
-//            String hex = String.format("#%02x%02x%02x", Color.red((Long) pallet_colores2.get(i)),Color.green((Long) pallet_colores2.get(i)), Color.blue((Long)pallet_colores2.get(i)));
-//            color_hex[i].setText(hex);
-//            color_hex[i].setTextSize(20);
-//            color_hex[i].setPadding(10, 0, 10, 0);
-//            color_hex[i].setTextColor(Color.rgb(Color.red((Long) pallet_colores2.get(i)) , Color.green((Long) pallet_colores2.get(i)) , Color.blue((Long)pallet_colores2.get(i))));
-//            mlinearlayout.addView(colors[i]);
-//            linearLayout2.addView(color_hex[i]);
-//
-//        }
 
 
         like_btn.setOnClickListener(new View.OnClickListener() {
