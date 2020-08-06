@@ -110,17 +110,19 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                int id=menuItem.getItemId();
+
 
                 switch (menuItem.getItemId()) {
                     case R.id.populars_p: {
                         Intent intents = new Intent(MainActivity.this, PopularpalletesActivity.class);
                         startActivity(intents);
+                        break;
                     }
 
                     case R.id.collection: {
                         Intent intent2 = new Intent(MainActivity.this, CollectionActivity.class);
                         startActivity(intent2);
+                        break;
                     }
 
 
