@@ -52,7 +52,7 @@ public class Make_ownpalletActivity extends AppCompatActivity {
         like = findViewById(R.id.favorit_pallet);
         save = findViewById(R.id.save_pallet);
 
-        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "pallet_db").build();
+        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "pallet_db").allowMainThreadQueries().build();
 
         c1.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)

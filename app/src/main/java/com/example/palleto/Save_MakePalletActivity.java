@@ -25,7 +25,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 
-public class Save_MakePalletActivity extends AppCompatActivity {
+public class Save_MakePalletActivity extends AppCompatActivity implements Save_Pallet_Dialog.SaveDialogListener {
     ArrayList<Pixel> pallet_colores;
     CardView[] colors;
     TextView[] color_hex;
@@ -47,7 +47,7 @@ public class Save_MakePalletActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "pallet_db").build();
+        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "pallet_db").allowMainThreadQueries().build();
 
         setContentView(R.layout.activity_save__make_pallet);
         mlinearlayout = findViewById(R.id.extractedcolors);
@@ -111,10 +111,17 @@ public class Save_MakePalletActivity extends AppCompatActivity {
 
     public void save_pallet(View view) {
         openDialog();
+        is_saved = true;
     }
 
     public void openDialog() {
         Save_Pallet_Dialog exampleDialog = new Save_Pallet_Dialog(file_hex_code);
         exampleDialog.show(getSupportFragmentManager(), "save dialog");
+    }
+
+    @Override
+    public void applyTexts(String name) {
+//        System.out.println("\n\n\n&&&&&&&&&&&&&&&&\n\n\n");
+        file_name = name;
     }
 }
