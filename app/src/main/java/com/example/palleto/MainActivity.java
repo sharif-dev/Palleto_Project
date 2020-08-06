@@ -7,6 +7,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.room.Room;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -41,12 +42,15 @@ public class MainActivity extends AppCompatActivity {
     private String option = "";
     private int chosen_feature = 0;
     Uri gallery_image;
+    public AppDatabase db;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "pallet_db").build();
         mDrawelayout = findViewById(R.id.drawelayout);
         navigationView = findViewById(R.id.navigation_view);
         navigationView.bringToFront();
