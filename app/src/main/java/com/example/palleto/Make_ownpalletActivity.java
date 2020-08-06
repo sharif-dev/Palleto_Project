@@ -23,7 +23,7 @@ import com.flask.colorpicker.OnColorSelectedListener;
 import com.flask.colorpicker.builder.ColorPickerClickListener;
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
 
-public class Make_ownpalletActivity extends AppCompatActivity {
+public class Make_ownpalletActivity extends AppCompatActivity  implements Save_Pallet_Dialog.SaveDialogListener {
 
     private CardView c1, c2, c3, c4;
     private TextView h1, h2, h3, h4;//hex
@@ -37,7 +37,7 @@ public class Make_ownpalletActivity extends AppCompatActivity {
     public String file_hex_code = "";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_ownpallet);
         c1 = findViewById(R.id.first_diamond);
@@ -272,5 +272,10 @@ public class Make_ownpalletActivity extends AppCompatActivity {
                 exampleDialog.show(getSupportFragmentManager(), "save dialog");
             }
         });
+    }
+
+    @Override
+    public void applyTexts(String name) {
+        file_name = name;
     }
 }
