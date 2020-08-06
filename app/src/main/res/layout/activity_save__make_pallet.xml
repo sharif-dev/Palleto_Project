@@ -50,7 +50,9 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/ic_save"
-            android:layout_marginLeft="135dp"/>
+            android:layout_marginLeft="135dp"
+            android:onClick="save_pallet"
+            />
 
         <ImageView
             android:id="@+id/add_to_favorits"
@@ -58,6 +60,7 @@
             android:layout_height="40dp"
             android:src="@drawable/ic_favorite"
             android:layout_marginLeft="40dp"
+            android:onClick="like"
             />
 
     </LinearLayout>
