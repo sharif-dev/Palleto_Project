@@ -18,7 +18,10 @@ public interface PalletDAO {
     List<Pallet> loadFavorites();
 
     @Insert
-    void insert_Pallet(Pallet... pallets);
+    void insert_Pallet(Pallet pallet);
+
+    @Query("INSERT INTO pallet (name, code, is_favorite) VALUES ((:name), (:code), (:is_favorite))")
+    void insert_my_pallet(String name,String code, boolean is_favorite);
 
     @Delete
     void delete(Pallet pallet);

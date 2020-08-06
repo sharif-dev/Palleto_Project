@@ -12,7 +12,7 @@ public class Pallet {
     @PrimaryKey @NotNull
     public String name;
 
-    @ColumnInfo(name = "rgb")
+    @ColumnInfo(name = "code")
     public String code = "";
 
     @ColumnInfo(name = "is_favorite")

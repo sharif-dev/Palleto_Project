@@ -53,11 +53,13 @@ public class Save_Pallet_Dialog extends AppCompatDialogFragment {
                         Log.i(TAG, "start saving");
                         final String pallet_name = palletName.getText().toString();
                         listener.applyTexts(pallet_name);
-//                        Log.i(TAG, "######");
+//                        Log.i(TAG, "######");X
                         Pallet pallet = new Pallet();
                         pallet.name = pallet_name;
                         pallet.code = str_to_save;
-                        db.palletDAO().insert_Pallet(pallet);
+                        db.palletDAO().insert_my_pallet(pallet.name, pallet.code, pallet.is_favorite);
+//                        db.palletDAO().insert_Pallet(pallet);
+                        Log.i(TAG, "\n\n\n\n" + pallet.name + "\n\n\n\n");
                     }
                 });
         palletName = view.findViewById(R.id.name_save);
