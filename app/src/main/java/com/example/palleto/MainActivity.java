@@ -118,6 +118,14 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(MainActivity.this, PopularpalletesActivity.class);
                         startActivity(intent);
 
+
+                    case R.id.collection:
+
+                        Intent intent2 = new Intent(MainActivity.this, CollectionActivity.class);
+                        startActivity(intent2);
+
+
+
                 }
                         return true;
 

@@ -13,7 +13,8 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Make_ownpalletActivity"></activity>
+        <activity android:name=".pallet_detialsActivity"></activity>
+        <activity android:name=".Make_ownpalletActivity" />
         <activity android:name=".PopularpalletesActivity" />
         <activity android:name=".Save_MakePalletActivity" />
         <activity android:name=".palletmaker_firstActivity" />

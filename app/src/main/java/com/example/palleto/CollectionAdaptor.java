@@ -1,6 +1,7 @@
 package com.example.palleto;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,9 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -22,10 +25,12 @@ public class CollectionAdaptor extends RecyclerView.Adapter<CollectionAdaptor.Vi
 
     private LayoutInflater layoutInflater ;
     ArrayList<Pallete> list ;
+    Context context;
 
-    public CollectionAdaptor(Context context , ArrayList<Pallete> list_of_pallets )  {
-        this.layoutInflater = LayoutInflater.from(context);
+    public CollectionAdaptor(Context context,ArrayList<Pallete> list_of_pallets )  {
+       this.layoutInflater = LayoutInflater.from(context);
         this.list = list_of_pallets;
+        this.context=context;
 
     }
 
@@ -40,11 +45,23 @@ public class CollectionAdaptor extends RecyclerView.Adapter<CollectionAdaptor.Vi
     public void onBindViewHolder(@NonNull CollectionAdaptor.ViewHolder holder, int position) {
 
         holder.name.setText(list.get(position).getName());
-        holder.Date.setText(list.get(position).getDate());
-        holder.Description.setText(list.get(position).getDescription());
+        Date date= new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy / HH:mm:ss");
+        holder.Date.setText(formatter.format(date));
+        holder.Description.setText(list.get(position).getColors().length);
         holder.click.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+                //TODO
+//
+//                Intent newIntent = new Intent(context, pallet_detialsActivity.class);
+//                newIntent.putExtra("show" , list);
+//                context.startActivity(newIntent);
+
+
+
 
             }
         });
@@ -60,7 +77,7 @@ public class CollectionAdaptor extends RecyclerView.Adapter<CollectionAdaptor.Vi
     public class ViewHolder extends RecyclerView.ViewHolder
     {
         TextView name , Date , Description;
-        LinearLayout l1,l2,l3,l4,l5,l6;
+        ImageView dislike;
         ImageView click;
 
         public ViewHolder(@NonNull View itemView)  {
@@ -69,14 +86,7 @@ public class CollectionAdaptor extends RecyclerView.Adapter<CollectionAdaptor.Vi
             Date = itemView.findViewById(R.id.collection_date);
             Description = itemView.findViewById(R.id.collection_description);
             click = itemView.findViewById(R.id.click_pallet);
-//            l1=itemView.findViewById(R.id.first_color);
-//            l2=itemView.findViewById(R.id.second_color);
-//            l3=itemView.findViewById(R.id.third_color);
-//            l4=itemView.findViewById(R.id.forth_color);
-//            l5=itemView.findViewById(R.id.fifth_color);
-//            l6=itemView.findViewById(R.id.six_color);
-
-
+            dislike = itemView.findViewById(R.id.like_or_not);
 
 
 

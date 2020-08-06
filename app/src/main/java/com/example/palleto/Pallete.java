@@ -1,19 +1,36 @@
 package com.example.palleto;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Pallete {
 
     private String date;
-    private String name;
-    private ArrayList<String> colors;
     private String Description;
+    private Boolean is_liked;
+    private String name;
+    private String[] colors;
 
-    public Pallete(String name, String date, ArrayList<String> colors, String Description) {
-        this.date = date;
+    public Pallete(String name, String[] colors) {
+
         this.name = name;
         this.colors = colors;
-        this.Description=Description;
+    }
+
+    public Boolean getIs_liked() {
+        return is_liked;
+    }
+
+    public void setIs_liked(Boolean is_liked) {
+        this.is_liked = is_liked;
+    }
+
+    public String[] getColors() {
+        return colors;
+    }
+
+    public void setColors(String[] colors) {
+        this.colors = colors;
     }
 
     public String getDate() {
@@ -32,13 +49,6 @@ public class Pallete {
         this.name = name;
     }
 
-    public ArrayList<String> getColors() {
-        return colors;
-    }
-
-    public void setColors(ArrayList<String> colors) {
-        this.colors = colors;
-    }
 
     public String getDescription() {
         return Description;

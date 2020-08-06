@@ -37,7 +37,6 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.5.2'
 
 
-
     implementation 'com.github.QuadFlask:colorpicker:0.0.15'
 
     //noinspection GradleCompatible
@@ -51,7 +50,8 @@ dependencies {
     def room_version = "2.2.5"
 
     implementation "androidx.room:room-runtime:$room_version"
-    annotationProcessor "androidx.room:room-compiler:$room_version" // For Kotlin use kapt instead of annotationProcessor
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    // For Kotlin use kapt instead of annotationProcessor
 
     // optional - Kotlin Extensions and Coroutines support for Room
     implementation "androidx.room:room-ktx:$room_version"

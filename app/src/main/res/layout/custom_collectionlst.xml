@@ -116,6 +116,13 @@
                 />
 
         </LinearLayout>
+            <ImageView
+                android:id="@+id/like_or_not"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="12dp"
+                android:src="@drawable/ic_favorite_not"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
