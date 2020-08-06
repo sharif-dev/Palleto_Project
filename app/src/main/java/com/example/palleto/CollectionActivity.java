@@ -31,6 +31,7 @@ public class CollectionActivity extends AppCompatActivity {
         for (Pallet p : pallets) {
             names.add(p.name);
             items.add(p.code);
+            String[] hex_codes = p.code.split(" ");
         }
 
 
